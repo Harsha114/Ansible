@@ -1,0 +1,10 @@
+---
+
+- hosts: all
+  become: true
+  tasks:
+  - name: Create directory
+    file:
+      path: "/opt/Harsha"
+      state: directory
+      mode: 0774
