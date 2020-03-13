@@ -1,0 +1,10 @@
+---
+
+- hosts: all
+  become: true
+  tasks:
+  - name: Create a file
+    file:
+      path: "/opt/Hosh.txt"
+      state: touch
+      mode: 0663 
