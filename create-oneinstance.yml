@@ -1,0 +1,26 @@
+---
+
+- name: create a instance
+  hosts: all
+  gather_facts: False
+  vars:
+  - keypair: <keypair name>
+    instance_type: t2.micro
+    security_group: <lanch-wizard-name>
+    image: <ami-id>
+    region: <region>
+  tasks:
+    - name: Lanch instance
+      ec2:
+         aws_access_key: <access-key>
+         aws_secret_access_key: <secret-key>
+         key_name: "{{ keypair }}"
+         group: "{{ security_group }}"
+         instance_type: "{{ instance_type }}"
+         image: "{{ image }}"
+         wait: true
+         region: "{{ region }}"
+         count: 1
+         vpc_subnet_id: subnet-1234
+         assign_public_ip: yes
+      register: ec2
