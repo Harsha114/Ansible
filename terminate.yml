@@ -1,0 +1,16 @@
+---
+
+- hosts: all
+  become: true
+  tasks:
+  - name: Terminste aws instance
+    ec2:
+      state: 'absent'
+      region: ap-south-1
+      aws_access_key: <access_key>
+      aws_secret_key: <secret_key>
+      instance_ids: <i-instance_id>
+      wait: True
+    tages: 
+         - TerminateInstance
+      
