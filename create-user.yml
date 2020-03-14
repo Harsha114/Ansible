@@ -1,0 +1,14 @@
+---
+
+- hosts: all
+  become: true
+  tasks:
+  - name: Create iam user
+    iam: 
+      iam-type: user
+      name: test-usr
+      aws_access_key: <access-id>
+      aws_secret_key: <secret-id>
+      state: present
+      password: 12345
+      access_key_state: create
