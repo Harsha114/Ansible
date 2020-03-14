@@ -1,0 +1,12 @@
+---
+
+- hosts: all
+  become: true
+  tasks: 
+  - name: Terminate the security group
+    ec2_group:
+      region: ap-south-1
+      aws_access_key: <access-id>
+      aws_secret_key: <access-id>
+      group_id: <sg-id>
+      state: absent
