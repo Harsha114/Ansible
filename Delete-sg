@@ -1,0 +1,12 @@
+---
+
+- hosts: all
+  become: true
+  tasks: 
+  - name: Delete the iam group
+    iam:
+      iam_type: gruop
+      name: <group-name>
+      aws_access_key: <access-id>
+      aws_sercet_key: <sercet-id>
+      state: absent
