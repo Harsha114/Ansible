@@ -1,0 +1,12 @@
+---
+
+- hosts: all
+  become: true
+  tasks: 
+  - name: Delete the iam user
+    iam: 
+      iam_type: user
+      name: test-usr
+      aws_access_key: <access-d>
+      aws_serect_key: <secret-id>
+      state: absent
