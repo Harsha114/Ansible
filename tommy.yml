@@ -1,0 +1,30 @@
+- hosts: dbserver
+  become: yes
+  tasks:
+
+# - name: Update all packages to the latest version
+#   yum:
+#     update: dist
+
+  - name: Download tomcat
+    get_url: 
+      url: http://apachemirror.wuchna.com/tomcat/tomcat-9/v9.0.33/bin/apache-tomcat-9.0.33.tar.gz     
+      dest: /opt/apache-tomcat-9.0.33.tar.gz
+
+  - name: Unarchive a file that is already on the remote machine
+    unarchive:
+      src: /opt/apache-tomcat-9.0.33.tar.gz
+      dest: /opt/
+      remote_src: yes
+
+#  - name: Run Tomcat
+#    shell: ./startup.sh
+#    args:
+#      chdir: /opt/apache-tomcat-9.0.33/bin
+  - name: Start and enable Tomcat service
+    service:  
+      name: /opt/apache-tomcat-9.0.33/bin/startup.sh
+      state: started       
+#      enabled: true
+#      daemon_reload: true
+#      command: nohup '/opt/apache-tomcat-9.0.33/bin/startup.sh'
